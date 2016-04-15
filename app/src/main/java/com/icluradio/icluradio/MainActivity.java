@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MediaPlayer mediaPlayer;
     final String RADIO_URL = "http://icluradio.callutheran.edu:8000/listen2"; // iCLU Radio URL
     boolean isPaused = false;
+    boolean isStopped = false;
     ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         progressDialog = new ProgressDialog(this, ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Buffering...");
+        progressDialog.setCancelable(false);
         initializePlayer();
         play();
     }
@@ -78,10 +80,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void play() {
         playButton.setEnabled(false);
+        playButton.setImageResource(R.drawable.play_icon_purple);
         pauseButton.setEnabled(true);
+        pauseButton.setImageResource(R.drawable.pause_icon);
         stopButton.setEnabled(true);
+        stopButton.setImageResource(R.drawable.stop_icon);
         stepForwardButton.setEnabled(true);
-
+        stepForwardButton.setImageResource(R.drawable.stepforward_icon);
+        if(isStopped) {
+            isStopped = false;
+            initializePlayer();
+        }
         if(isPaused) {
             mediaPlayer.start();
             isPaused = false;
@@ -102,21 +111,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mediaPlayer.pause();
         isPaused = true;
         playButton.setEnabled(true);
+        playButton.setImageResource(R.drawable.play_icon);
         pauseButton.setEnabled(false);
+        pauseButton.setImageResource(R.drawable.pause_icon_purple);
         stepForwardButton.setEnabled(true);
+        stepForwardButton.setImageResource(R.drawable.stepforward_icon);
     }
     private void stop() {
         mediaPlayer.stop();
         mediaPlayer.release();
-        initializePlayer();
+        isStopped = true;
 
         playButton.setEnabled(true);
+        playButton.setImageResource(R.drawable.play_icon);
         pauseButton.setEnabled(false);
+        pauseButton.setImageResource(R.drawable.pause_icon_gray);
         stopButton.setEnabled(false);
+        stopButton.setImageResource(R.drawable.stop_icon_purple);
         stepForwardButton.setEnabled(false);
+        stepForwardButton.setImageResource(R.drawable.stepforward_icon_gray);
     }
 
     private void stepForward() {
+        stepForwardButton.setImageResource(R.drawable.stepforward_icon_purple);
         isPaused = false;
         mediaPlayer.stop();
         initializePlayer();

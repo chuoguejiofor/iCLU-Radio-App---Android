@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/iCLURadio.iml" filepath="$PROJECT_DIR$/iCLURadio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iCLU-Radio-App---Android.iml" filepath="$PROJECT_DIR$/iCLU-Radio-App---Android.iml" />
     </modules>
   </component>
 </project>
