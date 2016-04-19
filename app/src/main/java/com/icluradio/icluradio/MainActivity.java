@@ -4,14 +4,14 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import com.devbrackets.android.exomedia.EMAudioPlayer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,14 +20,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton pauseButton;
     private ImageButton stepForwardButton;
 
-    MediaPlayer mediaPlayer;
+    EMAudioPlayer mediaPlayer;
     final String RADIO_URL = "http://icluradio.callutheran.edu:8000/listen2"; // iCLU Radio URL
     boolean isPaused = false;
     boolean isStopped = false;
     ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //TODO UI Controls
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -68,15 +67,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initializePlayer() {
-        progressDialog.show();
-        mediaPlayer = new MediaPlayer();
+        mediaPlayer = new EMAudioPlayer(this);
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
-            mediaPlayer.setDataSource(RADIO_URL);
+            mediaPlayer.setDataSource(this, Uri.parse(RADIO_URL));
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+
     }
     private void play() {
         playButton.setEnabled(false);
@@ -96,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             isPaused = false;
         }
         else {
+            progressDialog.show();
             mediaPlayer.prepareAsync();
             mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         stepForwardButton.setImageResource(R.drawable.stepforward_icon);
     }
     private void stop() {
-        mediaPlayer.stop();
+        mediaPlayer.stopPlayback();
         mediaPlayer.release();
         isStopped = true;
 
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void stepForward() {
         stepForwardButton.setImageResource(R.drawable.stepforward_icon_purple);
         isPaused = false;
-        mediaPlayer.stop();
+        mediaPlayer.stopPlayback();
         initializePlayer();
         play();
 
