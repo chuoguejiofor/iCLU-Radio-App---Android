@@ -125,11 +125,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         playButton.setEnabled(true);
         playButton.setImageResource(R.drawable.play_icon);
         pauseButton.setEnabled(false);
-        pauseButton.setImageResource(R.drawable.pause_icon_gray);
+        pauseButton.setImageResource(R.drawable.pause_icon_white);
         stopButton.setEnabled(false);
         stopButton.setImageResource(R.drawable.stop_icon_purple);
         stepForwardButton.setEnabled(false);
-        stepForwardButton.setImageResource(R.drawable.stepforward_icon_gray);
+        stepForwardButton.setImageResource(R.drawable.stepforward_icon_white);
     }
 
     private void stepForward() {
