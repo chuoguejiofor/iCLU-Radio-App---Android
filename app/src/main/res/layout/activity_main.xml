@@ -10,55 +10,64 @@
     tools:context="com.icluradio.icluradio.MainActivity"
     android:background="@drawable/background">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/iclu_icon"
+        android:layout_centerHorizontal="true" />
+
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background">
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="75dp"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/mediaControls">
 
-        <ImageView
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/iclu_icon" />
+            android:id="@+id/playButton"
+            android:src="@drawable/play_icon"
+            android:background="@null" />
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="75dp">
+            android:id="@+id/pauseButton"
+            android:src="@drawable/pause_icon"
+            android:background="@null" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/playButton"
-                android:src="@drawable/play_icon"
-                android:background="@null" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stepForwardButton"
+            android:src="@drawable/stepforward_icon"
+            android:background="@null" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pauseButton"
-                android:src="@drawable/pause_icon"
-                android:background="@null" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/stepForwardButton"
-                android:src="@drawable/stepforward_icon"
-                android:background="@null" />
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/stopButton"
-                android:src="@drawable/stop_icon"
-                android:background="@null" />
-
-        </LinearLayout>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stopButton"
+            android:src="@drawable/stop_icon"
+            android:background="@null" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Created by Chu Oguejiofor"
+        android:id="@+id/textView"
+        android:layout_marginBottom="10dp"
+        android:textColor="#ffffff"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:textSize="10dp" />
+
 </RelativeLayout>
